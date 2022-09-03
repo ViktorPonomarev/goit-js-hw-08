@@ -30,7 +30,7 @@ function onTextareaInput(e) {
      e.preventDefault();
     formData[e.target.name] = e.target.value;
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(FormData));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
 /*
