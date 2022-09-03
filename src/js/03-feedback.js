@@ -16,22 +16,14 @@ let formData = {};
 /*Сделай так, чтобы хранилище обновлялось 
 не чаще чем раз в 500 миллисекунд.
  */
+populateTextarea();
+
 refs.form.addEventListener('submit', onFormSubmit);
 refs.form.addEventListener('input', throttle(onTextareaInput, 500));
 
-populateTextarea();
 
-/*
- * - Останавливаем поведение по умолчанию
- * - Убираем сообщение из хранилища
- * - Очищаем форму
- */
-function onFormSubmit(e) {
-   e.preventDefault();
-    console.log('Отправл форму');
-    e.currentTarget.reset();
-    localStorage.removeItem(STORAGE_KEY);
-}
+
+
 
 /*
  * - Получаем значение поля
@@ -40,7 +32,7 @@ function onFormSubmit(e) {
  */
 function onTextareaInput(e) {
      e.preventDefault();
-    formData [e.target.name] = e.target.value;
+    formData[e.target.name] = e.target.value;
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(FormData));
 }
@@ -57,4 +49,16 @@ function populateTextarea() {
         (refs.textarea.value = savedMessage.message || "");
         (refs.input.value = parseMessage.email || "");
     }
+}
+
+/*
+ * - Останавливаем поведение по умолчанию
+ * - Убираем сообщение из хранилища
+ * - Очищаем форму
+ */
+function onFormSubmit(e) {
+   e.preventDefault();
+    console.log('Отправл форму');
+    e.currentTarget.reset();
+    localStorage.removeItem(STORAGE_KEY);
 }
