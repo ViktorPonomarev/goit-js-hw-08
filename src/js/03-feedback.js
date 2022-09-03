@@ -1,7 +1,7 @@
 import throttle from 'lodash.throttle';
 
 // Ключ к хранилищу
-const STORAGE_KEY = "feedback-form-state";
+const STORAGE_KEY = 'feedback-form-state';
 
 // Доступ к элементам формы
 const refs = {
@@ -21,9 +21,17 @@ populateTextarea();
 refs.form.addEventListener('submit', onFormSubmit);
 refs.form.addEventListener('input', throttle(onTextareaInput, 500));
 
-
-
-
+/*
+ * - Останавливаем поведение по умолчанию
+ * - Убираем сообщение из хранилища
+ * - Очищаем форму
+ */
+function onFormSubmit(e) {
+   e.preventDefault();
+    console.log('Отправл форму');
+    e.currentTarget.reset();
+    localStorage.removeItem(STORAGE_KEY);
+}
 
 /*
  * - Получаем значение поля
@@ -46,19 +54,8 @@ function populateTextarea() {
     const parseMessage = JSON.parse(savedMessage)
 
     if (savedMessage) {
-        (refs.textarea.value = savedMessage.message || "");
+        (refs.textarea.value = parseMessage.message || "");
         (refs.input.value = parseMessage.email || "");
     }
 }
 
-/*
- * - Останавливаем поведение по умолчанию
- * - Убираем сообщение из хранилища
- * - Очищаем форму
- */
-function onFormSubmit(e) {
-   e.preventDefault();
-    console.log('Отправл форму');
-    e.currentTarget.reset();
-    localStorage.removeItem(STORAGE_KEY);
-}
