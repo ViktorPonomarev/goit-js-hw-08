@@ -44,6 +44,8 @@ function populateTextarea() {
     if (savedMessage) {
         (refs.textarea.value = parseMessage.message || "");
         (refs.input.value = parseMessage.email || "");
+       
+        
     }
 }
 
@@ -54,7 +56,7 @@ function populateTextarea() {
  */
 function onFormSubmit(e) {
    e.preventDefault();
-    console.log('Отправл форму');
+    console.log('Отправил форму');
     e.currentTarget.reset();
     localStorage.removeItem(STORAGE_KEY);
 }
