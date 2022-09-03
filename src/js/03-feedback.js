@@ -17,7 +17,7 @@ let formData = {};
 не чаще чем раз в 500 миллисекунд.
  */
 refs.form.addEventListener('submit', onFormSubmit);
-refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
+refs.form.addEventListener('input', throttle(onTextareaInput, 500));
 
 populateTextarea();
 
