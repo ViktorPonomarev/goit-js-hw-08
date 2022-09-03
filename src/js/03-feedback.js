@@ -22,18 +22,6 @@ refs.form.addEventListener('submit', onFormSubmit);
 refs.form.addEventListener('input', throttle(onTextareaInput, 500));
 
 /*
- * - Останавливаем поведение по умолчанию
- * - Убираем сообщение из хранилища
- * - Очищаем форму
- */
-function onFormSubmit(e) {
-   e.preventDefault();
-    console.log('Отправл форму');
-    e.currentTarget.reset();
-    localStorage.removeItem(STORAGE_KEY);
-}
-
-/*
  * - Получаем значение поля
  * - Сохраняем его в хранилище
  * - Можно добавить throttle
@@ -51,7 +39,7 @@ function onTextareaInput(e) {
  */
 function populateTextarea() {
     const savedMessage = localStorage.getItem(STORAGE_KEY);
-    const parseMessage = JSON.parse(savedMessage)
+    const parseMessage = JSON.parse(savedMessage);
 
     if (savedMessage) {
         (refs.textarea.value = parseMessage.message || "");
@@ -59,3 +47,14 @@ function populateTextarea() {
     }
 }
 
+/*
+ * - Останавливаем поведение по умолчанию
+ * - Убираем сообщение из хранилища
+ * - Очищаем форму
+ */
+function onFormSubmit(e) {
+   e.preventDefault();
+    console.log('Отправл форму');
+    e.currentTarget.reset();
+    localStorage.removeItem(STORAGE_KEY);
+}
