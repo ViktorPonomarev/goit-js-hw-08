@@ -39,13 +39,13 @@ localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
  * - Если там что-то было, обновляем DOM
  */
 function populateTextarea() {
-    const savedMessage = localStorage.getItem(STORAGE_KEY);
-    const parseMessage = JSON.parse(savedMessage);
+    const savedDataMessage = localStorage.getItem(STORAGE_KEY);
+    const parseDataMessage = JSON.parse(savedDataMessage);
 
-    if (savedMessage) {
-        (refs.textarea.value = parseMessage.message || "");
-        (refs.input.value = parseMessage.email || "");
-     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+    if (savedDataMessage) {
+        (refs.textarea.value = parseDataMessage.message || "");
+        (refs.input.value = parseDataMessage.email || "");
+    
         
     }
 }
@@ -56,8 +56,11 @@ function populateTextarea() {
  * - Очищаем форму
  */
 function onFormSubmit(e) {
-   e.preventDefault();
+    e.preventDefault();
+    
     console.log('Отправил форму');
+     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
     e.currentTarget.reset();
     localStorage.removeItem(STORAGE_KEY);
+
 }
