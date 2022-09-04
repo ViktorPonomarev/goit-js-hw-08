@@ -29,8 +29,9 @@ refs.form.addEventListener('input', throttle(onTextareaInput, 500));
 function onTextareaInput(e) {
      e.preventDefault();
     formData[e.target.name] = e.target.value;
-
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+    
+localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+    
 }
 
 /*
@@ -44,7 +45,7 @@ function populateTextarea() {
     if (savedMessage) {
         (refs.textarea.value = parseMessage.message || "");
         (refs.input.value = parseMessage.email || "");
-       
+     
         
     }
 }
